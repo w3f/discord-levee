@@ -6,6 +6,7 @@ import Verify from "../islands/Verify.tsx";
 export default function Home() {
   const serverName = Deno.env.get("SERVER_NAME") ?? "NOT SET";
   const serverDesc = Deno.env.get("SERVER_DESC") ?? "NOT SET";
+  const siteKey = Deno.env.get("SITE_KEY") ?? "NOT SET";
   const backgroundImage = Deno.env.get("BACKGROUND_IMG") ?? "";
 
   return (
@@ -23,6 +24,11 @@ export default function Home() {
       <div
         className={tw`flex flex-row justify-end items-center w-full h-screen max-w-screen-md z-10`}
       >
+        <div
+          class={`h-captcha ${tw`hidden`}`}
+          id="captcha"
+          data-sitekey={siteKey}
+        ></div>
         <Verify title={serverName} description={serverDesc} />
       </div>
     </div>

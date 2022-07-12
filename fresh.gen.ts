@@ -2,16 +2,14 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
-import * as $0 from "./routes/api/siteKey.ts";
-import * as $1 from "./routes/api/verify.ts";
-import * as $2 from "./routes/index.tsx";
+import * as $0 from "./routes/api/verify.ts";
+import * as $1 from "./routes/index.tsx";
 import * as $$0 from "./islands/Verify.tsx";
 
 const manifest = {
   routes: {
-    "./routes/api/siteKey.ts": $0,
-    "./routes/api/verify.ts": $1,
-    "./routes/index.tsx": $2,
+    "./routes/api/verify.ts": $0,
+    "./routes/index.tsx": $1,
   },
   islands: {
     "./islands/Verify.tsx": $$0,

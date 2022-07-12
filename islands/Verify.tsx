@@ -1,6 +1,6 @@
 /** @jsx h */
 import { h, FunctionComponent } from "preact";
-import { useEffect, useState } from "preact/hooks";
+import { useState } from "preact/hooks";
 import { tw } from "@twind";
 
 const Spinner: FunctionComponent = () => {
@@ -32,49 +32,26 @@ interface VerifyProps {
 const Verify: FunctionComponent<VerifyProps> = ({ title, description }) => {
   const [waiting, setWaiting] = useState(false);
 
-  const getSiteKey = async (): Promise<string> => {
-    const res = await fetch("/api/siteKey");
-
-    if (res.ok) {
-      const { siteKey } = await res.json();
-      return siteKey;
-    }
-
-    throw new Error("Could not retrieve sitekey");
-  };
-
   const verify = () => {
     setWaiting(true);
 
-    getSiteKey()
-      .then((siteKey) => {
-        // deno-lint-ignore no-explicit-any
-        (window as any).hcaptcha.render("captcha", {
-          sitekey: siteKey,
-          theme: "light",
-        });
-        // deno-lint-ignore no-explicit-any
-        (window as any).hcaptcha
-          .execute({ async: true })
-          .then((res: { key: string; response: string }) => {
-            fetch("/api/verify", {
-              method: "POST",
-              body: JSON.stringify(res),
-            }).then(async (res) => {
-              if (res.status === 200) {
-                const { success, inviteLink } = await res.json();
+    // deno-lint-ignore no-explicit-any
+    (window as any).hcaptcha
+      .execute({ async: true })
+      .then((res: { key: string; response: string }) => {
+        fetch("/api/verify", {
+          method: "POST",
+          body: JSON.stringify(res),
+        }).then(async (res) => {
+          if (res.status === 200) {
+            const { success, inviteLink } = await res.json();
 
-                if (success) {
-                  window.location.href = inviteLink;
-                }
-              }
-              setWaiting(false);
-            });
-          })
-          .catch((err: Error) => {
-            console.error("error:", err);
-            setWaiting(false);
-          });
+            if (success) {
+              window.location.href = inviteLink;
+            }
+          }
+          setWaiting(false);
+        });
       })
       .catch((err: Error) => {
         console.error("error:", err);
@@ -96,11 +73,7 @@ const Verify: FunctionComponent<VerifyProps> = ({ title, description }) => {
       >
         {waiting ? <Spinner /> : "Get Discord Invite"}
       </div>
-      <div
-        class={`h-captcha ${tw`hidden`}`}
-        id="captcha"
-      ></div>
-      <script src="https://js.hcaptcha.com/1/api.js?render=explicit"></script>
+      <script src="https://js.hcaptcha.com/1/api.js"></script>
     </div>
   );
 };
