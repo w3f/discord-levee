@@ -55,12 +55,18 @@ jobs:
 workflows:
   version: 2
   test_and_deploy:
-    jobs:        
+    jobs:      
+      - helmLint:
+          filters:
+            tags:
+              only: /.*/  
       - buildImage:
           context: dockerhub-bot
           filters:
             tags:
               only: /.*/
+          requires:
+            - helmLint  
       - integrationTests:
           filters:
             tags:
