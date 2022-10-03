@@ -77,9 +77,6 @@ workflows:
           filters:
             tags:
               only: /.*/
-          requires:
-            - unitTest
-            - testPrometheusRules
       - integrationTests:
           filters:
             tags:
