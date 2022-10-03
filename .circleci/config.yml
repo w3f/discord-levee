@@ -41,7 +41,7 @@ jobs:
       - setup_remote_docker
       - run:
           command: |
-            /scripts/publish-image.sh web3f/discord-leveee
+            /scripts/publish-image.sh web3f/discord-levee
 
   publishChart:
     docker:
