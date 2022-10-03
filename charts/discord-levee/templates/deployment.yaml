@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    app: {{ .Release.Name }}
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: {{ .Release.Name }}
+        image: {{ .Values.image.repo }}:{{ .Values.image.tag | default .Chart.AppVersion }}
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: "H_SECRET"
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "levee.secretName" . }}
+              key: "h-secret"
+        - name: "SITE_KEY"
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "levee.secretName" . }}
+              key: "h-site-key"
+        - name: "CHANNEL_ID"
+          value: {{ .Values.discord.channelID | quote }}
+        - name: "DISCORD_SECRET"
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "levee.secretName" . }}
+              key: "discord-secret"
+        - name: "SERVER_NAME"
+          value: {{ .Values.discord.serverName }}
+        - name: "SERVER_DESC"
+          value: {{ .Values.discord.serverDescription }}
+        # - name: "BACKGROUND_IMG"
+        #   value: ""  
+        ports:
+        - name: server
+          containerPort: 8000
+        {{ if ne .Values.environment "ci" }}
+        resources:
+          {{- toYaml .Values.resources | nindent 10 }}
+        {{ end }}
