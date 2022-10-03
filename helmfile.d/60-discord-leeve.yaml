@@ -6,6 +6,6 @@ repositories:
     url: https://w3f.github.io/helm-charts/
 releases:
   - name: discord-levee
-    chart: ../../charts/discord-levee
+    chart: ../charts/discord-levee
     values:
       - ./config/discord-levee.yaml.gotmpl
