@@ -1,0 +1,20 @@
+image:
+  repo: web3f/discord-levee
+  # tag: latest
+
+domain: your.domain
+environment: ci
+
+discord:
+  channelID: "xxx"
+  clientSecret: "xxx"
+  serverName: "xxx"
+  serverDescription: "xxx"
+
+hCaptcha:
+  secret: "xxx"
+  siteKey: "xxx"
+
+resources:
+  requests: {}
+  limits: {}

@@ -2,6 +2,19 @@
 
 A simple site to create unique one time use invites for discord.
 
+## How to Run
+
+### Locally
+```sh
+deno task start
+```
+
+### Docker
+```sh
+docker build -t app . && docker run -it --init -p 8000:8000 app
+```
+
+
 ## Setup
 
 1. Fork this Repo
