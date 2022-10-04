@@ -8,21 +8,16 @@ export default function Home() {
   const serverDesc = Deno.env.get("SERVER_DESC") ?? "NOT SET";
   const siteKey = Deno.env.get("SITE_KEY") ?? "NOT SET";
   const backgroundImage = Deno.env.get("BACKGROUND_IMG") ?? "";
-
   return (
     <div
-      className={tw`flex flex-col justify-start items-start h-screen w-screen bg-[#202225] #2f3136`}
+      style={{
+        backgroundImage: `url('${backgroundImage}')`,
+        backgroundColor: "#000000",
+      }}
+      className={tw`flex flex-col justify-start items-start h-screen w-screen bg-[#000000] #000000`}
     >
       <div
-        style={{
-          clipPath: "ellipse(50% 99% at 33% 48%)",
-          backgroundImage: `url('${backgroundImage}')`,
-          backgroundColor: "#5765f2",
-        }}
-        className={tw`absolute flex flex-col justify-center items-end w-full h-screen max-w-screen-md drop-shadow-md`}
-      ></div>
-      <div
-        className={tw`flex flex-row justify-end items-center w-full h-screen max-w-screen-md z-10`}
+        className={tw`flex flex-row justify-center items-center w-full h-screen z-10`}
       >
         <div
           class={`h-captcha ${tw`hidden`}`}

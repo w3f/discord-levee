@@ -5,6 +5,8 @@ image:
 domain: your.domain
 environment: ci
 
+backgroundImage: "ksm-background.svg"
+
 discord:
   channelID: "xxx"
   clientSecret: "xxx"

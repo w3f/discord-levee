@@ -43,8 +43,8 @@ spec:
           value: {{ .Values.discord.serverName }}
         - name: "SERVER_DESC"
           value: {{ .Values.discord.serverDescription }}
-        # - name: "BACKGROUND_IMG"
-        #   value: ""  
+        - name: "BACKGROUND_IMG"
+          value: {{ .Values.backgroundImage }} 
         ports:
         - name: server
           containerPort: 8000
