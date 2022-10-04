@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/w3f/discrod-levee.svg?style=svg)](https://circleci.com/gh/w3f/discord-levee)
+[![CircleCI](https://circleci.com/gh/w3f/discord-levee.svg?style=svg)](https://circleci.com/gh/w3f/discord-levee)
 
 # Discord Levee
 
