@@ -1,11 +1,10 @@
-FROM denoland/deno:latest
+FROM denoland/deno:alpine
 
 # The port that your application listens to.
 EXPOSE 8000
 
-RUN mkdir /home/deno
-RUN chown -R deno:deno /home/deno
 WORKDIR /app
+RUN chown -R deno:deno /app
 
 # Prefer not to run as root.
 USER deno
