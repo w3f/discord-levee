@@ -7,14 +7,11 @@ export default function Home() {
   const serverName = Deno.env.get("SERVER_NAME") ?? "NOT SET";
   const serverDesc = Deno.env.get("SERVER_DESC") ?? "NOT SET";
   const siteKey = Deno.env.get("SITE_KEY") ?? "NOT SET";
+  
   const backgroundImage = Deno.env.get("BACKGROUND_IMG") ?? "";
-  let bgPosition = "";
-
-  if (backgroundImage == "dot-background.jpeg") {
-    bgPosition = "flex flex-col justify-start items-start h-screen w-screen bg-[#000000] #000000  bg-cover";
-  }
-  else {
-    bgPosition = "flex flex-col justify-start items-start h-screen w-screen bg-[#000000] #000000";
+  let bgPosition = "flex flex-col justify-start items-start h-screen w-screen bg-[#000000] #000000";
+  if (backgroundImage.includes("dot-background.jpeg")) {
+    bgPosition += " bg-cover";
   }
 
   return (
