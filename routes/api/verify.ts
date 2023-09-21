@@ -7,7 +7,7 @@ const createInviteUrl = async (): Promise<string> => {
   const discordSecret = Deno.env.get("DISCORD_SECRET");
 
   const channelOptions = {
-    max_age: 300,
+    max_age: 60,
     max_uses: 1,
     temporary: false,
     unique: true,
