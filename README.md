@@ -16,16 +16,6 @@ deno task start
 docker build -t app . && docker run -it --init -p 8000:8000 app
 ```
 
-
-## Setup
-
-1. Fork this Repo
-2. Create a [Discord bot](https://discord.com/developers/applications) and add it to your server
-3. Sign up for [Deno Deploy](https://deno.com/deploy)
-4. Import the fork into Deno Deploy
-5. Set environment variables
-6. Deploy!
-
 ### Environment variables
 
 The following environment variables must be set:
